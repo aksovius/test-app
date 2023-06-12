@@ -1,3 +1,6 @@
+"use client";
+import Header from './components/Header/Header'
+import SideMenu from './components/SideMenu/SideMenu';
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -15,7 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        <SideMenu />
+        <div className='container'>
+          {children}
+        </div>
+       </body>
     </html>
   )
 }

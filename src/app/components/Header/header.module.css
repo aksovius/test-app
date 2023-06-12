@@ -1,0 +1,50 @@
+
+.sideMenu2 {
+  position: fixed;  /* Fixed to the viewport */
+  top: 50px;           /* Align to the top */
+  left: 0;          /* Align to the left */
+  height: 100%;     /* Full height */
+  width: 250px;     /* Set a width */
+  background-color: rgba(0,0,0,0.7);  /* Semi-transparent black */
+  z-index: 1000;    /* High z-index to overlay other elements */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  transition: 0.5s; /* Animation to slide in the sidenav */
+}
+
+.header {
+  position: fixed;  /* Fixed to the viewport */
+  top: 0;           /* Align to the top */
+  left: 0;          /* Align to the left */
+  height: 50px;     /* Full height */
+  width: 100%;     /* Set a width */
+  background-color: rgba(0,0,0,0.9);  /* Semi-transparent black */
+  z-index: 1000;    /* High z-index to overlay other elements */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  transition: 0.5s; /* Animation to slide in the sidenav */
+  display: flex;
+  align-items: center;
+  color: white
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 3rem;
+  color: white;
+  
+}
+
+@media (max-width: 768px) {
+  .button {
+    display: block;
+  }
+}
+@media (min-width: 769px) { 
+  .button {
+    display: none
+  }
+ }

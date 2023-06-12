@@ -1,0 +1,39 @@
+.link {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px;
+  }
+
+.link:hover {
+  background: yellow;
+  color: black;
+}
+
+.selected {
+  background: orange;
+}
+
+.sideMenu {
+  position: fixed;  /* Fixed to the viewport */
+  top: 50px;           /* Align to the top */
+  left: 0;          /* Align to the left */
+  height: 100%;     /* Full height */
+  width: 350px;     /* Set a width */
+  background-color: rgba(0,0,0,0.9);  /* Semi-transparent black */
+  z-index: 1000;    /* High z-index to overlay other elements */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  transition: 0.5s; /* Animation to slide in the sidenav */
+}
+
+@media (max-width: 768px) {
+    .sideMenu {
+      background-color: rgba(0,0,0,0.7); 
+    }
+  }
+@media (min-width: 769px) { 
+  
+  }
+  

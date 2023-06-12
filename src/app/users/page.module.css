@@ -1,0 +1,31 @@
+.table {
+    max-width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    position: relative;
+    overflow: auto;
+}
+
+.table th, .table td {
+    padding: 0.5em;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #000;
+    border-left-color: #ddd;
+    position: sticky;
+    background: #fff;
+}
+
+.table th:first-child {
+    border-left: none;
+}
+
+.table td {
+    line-height: 1.5;
+    vertical-align: top;
+}
