@@ -46,7 +46,7 @@ export default function SideMenu() {
         return pathname === path ? `${styles.link} ${styles.selected}` : styles.link;
     }
   return (
-    <>{open && <div ref={menu} className={styles.sideMenu}>
+    <>{open && <div ref={menu} className={styles.sideMenu} id="sidemenu">
     {links.map((link, index) => <Link key={index} href={link.path} className={getLinkStyleBasedOnPath(link.path)}> {link.name} </Link>)}
 </div>}</>
   )

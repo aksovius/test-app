@@ -1,3 +1,4 @@
+'use client'
 import styles from './page.module.css'
 
 export async function getUsers() {
