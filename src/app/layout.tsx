@@ -3,7 +3,7 @@ import Header from './components/Header/Header'
 import SideMenu from './components/SideMenu/SideMenu';
 import './globals.css'
 import { Inter } from 'next/font/google'
-import  {useState} from 'react'
+import  {useEffect, useState} from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -16,7 +16,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(window.innerWidth >= 768)
+  useEffect(() => {
+    const  handleResize = () => {
+      window.innerWidth < 768 ? setIsSideMenuOpen(false) : setIsSideMenuOpen(true)
+    } 
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <html lang="en">
       <body className={inter.className}>

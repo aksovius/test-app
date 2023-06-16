@@ -29,14 +29,12 @@ export default function SideMenu({isOpen, setIsOpen}: SideMenuProps) {
 
   
     const __handleClickOutside = (event: { target: any; }) => {
-        console.log(event.target.id)
+        if (window.innerWidth >= 768) return;
         if(!menu.current) return;
         else if(event.target.id === "side-menu-button") return
         else if(!menu.current.contains(event.target) ) setIsOpen(false);
     };
-
     useEffect(() => {
-        console.log('useEffect')
         window.addEventListener("mousedown", __handleClickOutside);
         return () => {
             window.removeEventListener("mousedown", __handleClickOutside);
