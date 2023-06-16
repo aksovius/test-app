@@ -1,5 +1,23 @@
+.container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: auto;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+   
+}
+
+.addUserButton {
+    margin: 10px 0 5px 0;
+}
+.row {
+    display: flex;
+    justify-content: flex-end;
+}
 .table {
-    max-width: 100%;
+    min-width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #ddd;

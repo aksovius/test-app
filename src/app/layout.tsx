@@ -16,7 +16,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(window.innerWidth >= 768)
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
+  
+  useEffect(() => {
+    window.innerWidth >= 768 ? setIsSideMenuOpen(true) : setIsSideMenuOpen(false)
+  }, []);
+
   useEffect(() => {
     const  handleResize = () => {
       window.innerWidth < 768 ? setIsSideMenuOpen(false) : setIsSideMenuOpen(true)
