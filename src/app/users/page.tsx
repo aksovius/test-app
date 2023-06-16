@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from '../components/AddUser/Modal';
 import styles from './page.module.css'
-import AddUserForm from '../components/AddUser/AddUserForm';
 
 export async function getUsers() {
     const res = await fetch('https://random-data-api.com/api/v2/users?size=20')

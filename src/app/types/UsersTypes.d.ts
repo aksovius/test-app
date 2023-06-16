@@ -4,3 +4,10 @@ export interface InputForm {
     phone: string;
     postalcode: string;
 }
+
+export interface InputValidation {
+    name: boolean;
+    gender: boolean;
+    phone: boolean;
+    postalcode: boolean;
+}

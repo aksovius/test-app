@@ -1,4 +1,5 @@
-import { InputForm } from "@/app/types/UsersTypes";
+import { InputForm, InputValidation } from "@/app/types/UsersTypes";
+import React from "react";
 
 /**
  * This function validates the value of an input field based on the provided pattern.
@@ -9,7 +10,7 @@ import { InputForm } from "@/app/types/UsersTypes";
  * @param event - The event object from the input field. This function expects 
  *                the event target to have 'value', 'name', and 'pattern' properties.
  */
-const inputPatternValidation = (event: React.ChangeEvent<HTMLInputElement>) => {
+export const inputPatternValidation = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name, pattern } = event.target;
     const regExp = new RegExp(pattern);
     if (!regExp.test(value)) {
@@ -39,28 +40,46 @@ const inputPatternValidation = (event: React.ChangeEvent<HTMLInputElement>) => {
  * @param inputForm - The current state of the input form fields.
  * @param setValidate - The state setter function for the validate state.
  */
-const validateInputForm = (inputForm: <InputForm>, setValidate: React.Dispatch<React.SetStateAction<Validate>>) => {
-    Object.keys(inputForm).forEach((key) => {
-      const formKey = key as keyof InputForm;
-  
-      let pattern: string;
-  
-      switch(formKey) {
-        case 'name':
-          pattern = "[A-z]{3,12}";
-          break;
-        case 'phone':
-          pattern = "[0-9\\-\\+\\(\\)]{5,15}";
-          break;
-        case 'postalcode':
-          pattern = "[0-9\\-]{5,10}";
-          break;
-        default:
-          pattern = "";
-      }
-  
-      const regex = new RegExp(`^${pattern}$`);
-      const isValid = regex.test(inputForm[formKey]);
-      setValidate((prevState: any) => ({ ...prevState, [formKey]: isValid }));
-    });
+export const validateInputForm = (inputForm: InputForm, setValidate: React.Dispatch<React.SetStateAction<InputValidation>>) => {
+  const validationResult: InputValidation = {
+    name: false,
+    gender: false,
+    phone: false,
+    postalcode: false,
   };
+  let result = true; // true if all fields are valid
+  Object.keys(inputForm).forEach((key) => {
+    const formKey = key as keyof InputForm;
+
+    let pattern: string;
+
+    switch(formKey) {
+      case 'name':
+        pattern = "[A-z]{3,12}";
+        break;
+      case 'phone':
+        pattern = "[0-9\\-\\+\\(\\)]{5,15}";
+        break;
+      case 'postalcode':
+        pattern = "[0-9\\-]{5,10}";
+        break;
+      case 'gender':
+        pattern = "[A-z]*";
+        break;
+      default:
+        pattern = "";
+    }
+
+    const regex = new RegExp(`^${pattern}$`);
+    const isValid = regex.test(inputForm[formKey]);
+    validationResult[formKey] = !isValid;
+    if (!isValid) {
+      result = false;
+    }
+  });
+
+  setValidate(validationResult);
+  return result;
+};
+
+

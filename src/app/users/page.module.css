@@ -17,7 +17,7 @@
     justify-content: flex-end;
 }
 .table {
-    min-width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #ddd;

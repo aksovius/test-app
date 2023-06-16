@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./addUserForm.module.css";
-import { InputForm } from "@/app/types/UsersTypes";
+import { InputForm, InputValidation } from "@/app/types/UsersTypes";
+import { inputPatternValidation, validateInputForm } from "./inputValidationTools";
 
 /**
  * Gender list
@@ -30,7 +31,7 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
     phone: "",
     postalcode: "",
   });
-  const [validate, setValidate] = useState({
+  const [validate, setValidate] = useState<InputValidation>({
     name: false,
     gender: false,
     phone: false,
@@ -54,7 +55,9 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
   const handelSubmit = (event: any) => {
     event.preventDefault();
     // validate the form
-    validateInputForm(inputForm, setValidate)
+    if(!validateInputForm(inputForm, setValidate)) return
+    // send the form
+    
     console.log(validate)
     console.log(inputForm);
   };
@@ -146,3 +149,4 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
     </form>
   );
 }
+

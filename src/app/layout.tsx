@@ -1,14 +1,12 @@
-'use client'
-import Header from './components/Header/Header'
-import SideMenu from './components/SideMenu/SideMenu';
+import Navigation from './components/Navigation';
 import './globals.css'
 import { Inter } from 'next/font/google'
-import  {useEffect, useState} from 'react'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: '',
-  description: '',
+  title: 'df',
+  description: 'k',
 }
 
 export default function RootLayout({
@@ -16,27 +14,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
   
-  useEffect(() => {
-    window.innerWidth >= 768 ? setIsSideMenuOpen(true) : setIsSideMenuOpen(false)
-  }, []);
-
-  useEffect(() => {
-    const  handleResize = () => {
-      window.innerWidth < 768 ? setIsSideMenuOpen(false) : setIsSideMenuOpen(true)
-    } 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <nav>
-          <Header isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen}/>
-          <SideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen}/>
-        </nav>
+        <Navigation />
         <main>
         <div className='container'>
           {children}
