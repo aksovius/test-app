@@ -1,4 +1,4 @@
-'client-side';
+'use client';
 import styles from './header.module.css';
 import { useState } from 'react';
 export default function Header() {

@@ -1,7 +1,7 @@
-'use client';
-import { useState, useEffect, useRef, RefObject } from 'react';
+'use client'
+import { useState, useEffect, useRef, RefObject, Suspense } from 'react';
 import Image from 'next/image'
-import styles from './images.module.css'  // your css file
+import styles from './images.module.css' 
 
 // Function to calculate random height for images
 function getRandomHeight(i: number): number {
@@ -11,16 +11,9 @@ function getRandomHeight(i: number): number {
 export default function Images() {
     // State to store the number of images to display
     const [imageCount, setImageCount] = useState<number>(25);
-    console.log('imageCount', imageCount)
+  
     // Ref to observe when we need to load more images
     const loader: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
-    // State to track when all images have loaded
-    const [loaded, setLoaded] = useState<boolean>(false);
-
-    // Callback for when an image finishes loading
-    const handleLoad = (): void => {
-        setLoaded(true);
-    };
     
     // UseEffect to observe when we need to load more images
     useEffect(() => {
@@ -58,14 +51,19 @@ export default function Images() {
     return (
         <div className={styles.container} id='image-container'>
             {Array.from({ length: imageCount }, (_, i: number) => (
-                <div key={i} className={styles.imageFrame} data-cy='image-frame' >
-                    <Image
-                        src={`https://picsum.photos/seed/${i}/200/300`}
-                        alt='Description of Image'
-                        width={100}
-                        height={getRandomHeight(i)}
-                        loading='lazy'
-                    />
+                <div 
+                    key={i} 
+                    className={styles.imageFrame} 
+                    data-cy='image-frame'
+                    style={{ height: `${getRandomHeight(i)}px` }}
+                      >
+                        <Image
+                            src={`https://picsum.photos/seed/${i}/200/300`}
+                            alt='Description of Image'
+                            width={100}
+                            height={100}
+                            loading='lazy'
+                        />
                 </div>
             ))}
             <div ref={loader} id='loader'>Loading...</div>
