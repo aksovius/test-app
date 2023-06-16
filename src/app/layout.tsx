@@ -1,9 +1,9 @@
-"use client";
 import Header from './components/Header'
 import SideMenu from './components/SideMenu/SideMenu';
 import './globals.css'
 import { Inter } from 'next/font/google'
-import RootStyleRegistry from './lib/RootStyleRegistry';
+import StyledComponentsRegistry from './lib/registry';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,11 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <StyledComponentsRegistry>
         <Header />
         <SideMenu />
         <div className='container'>
-          <RootStyleRegistry>{children}</RootStyleRegistry>
+          {children}
         </div>
+        </StyledComponentsRegistry>
        </body>
     </html>
   )

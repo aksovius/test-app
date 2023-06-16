@@ -1,4 +1,4 @@
-'client-side';
+'use client';
 import { MenuButton } from '@/app/styles/header/menuButton';
 import { StyledHeader } from '@/app/styles/header/header';
 import { useState } from 'react';
