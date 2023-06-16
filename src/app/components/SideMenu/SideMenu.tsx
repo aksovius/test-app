@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from 'next/navigation';
 import styles from './sidemenu.module.css'
+import { SideMenuProps } from "@/app/types/SideMenu";
 
 const links = [
     {
@@ -19,34 +20,33 @@ const links = [
     }
 ]
 
-export default function SideMenu() {
+export default function SideMenu({isOpen, setIsOpen}: SideMenuProps) {
     
-    const [open, setOpen] = useState(true);
      // close on click outside
     const pathname = usePathname();
 
     const menu = useRef<HTMLDivElement>(null);
 
   
-    // const __handleClickOutside = (event: { target: any; }) => {
-    //     console.log(event.target.id)
-    //     if(!menu.current) return;
-    //     else if(event.target.id === "side-menu-button") return
-    //     else if(!menu.current.contains(event.target) ) setOpen(false);
-    // };
+    const __handleClickOutside = (event: { target: any; }) => {
+        console.log(event.target.id)
+        if(!menu.current) return;
+        else if(event.target.id === "side-menu-button") return
+        else if(!menu.current.contains(event.target) ) setIsOpen(false);
+    };
 
-    // useEffect(() => {
-    //     console.log('useEffect')
-    //     window.addEventListener("mousedown", __handleClickOutside);
-    //     return () => {
-    //         window.removeEventListener("mousedown", __handleClickOutside);
-    //     }
-    // })
+    useEffect(() => {
+        console.log('useEffect')
+        window.addEventListener("mousedown", __handleClickOutside);
+        return () => {
+            window.removeEventListener("mousedown", __handleClickOutside);
+        }
+    })
     const getLinkStyleBasedOnPath = (path: string) => {
         return pathname === path ? `${styles.link} ${styles.selected}` : styles.link;
     }
   return (
-    <>{open && <div ref={menu} className={styles.sideMenu}>
+    <>{isOpen && <div ref={menu} className={styles.sideMenu} id='sidemenu'>
     {links.map((link, index) => <Link key={index} href={link.path} className={getLinkStyleBasedOnPath(link.path)}> {link.name} </Link>)}
 </div>}</>
   )
