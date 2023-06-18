@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./addUserForm.module.css";
 import { InputForm, InputValidation } from "@/app/users/UsersTypes";
 import { inputPatternValidation, validateInputForm } from "./validationTools";
@@ -39,6 +39,12 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
     postalcode: false,
   });
 
+  const [isValidForm, setIsValidForm] = useState(false);
+ 
+  useEffect(() => {
+  setIsValidForm(validateInputForm(inputForm, setValidate));
+  }, [inputForm]);
+
   const handleGenderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setInputForm({ ...inputForm, gender: event.target.value });
   };
@@ -55,8 +61,8 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
 
   const handelSubmit = (event: any) => {
     event.preventDefault();
-    // validate the form
-    if(!validateInputForm(inputForm, setValidate)) return
+    if(!isValidForm) return
+    
     // send the form
     onSubmit(inputForm)
     onClose()
@@ -81,7 +87,7 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
             pattern="[A-z ]{3,20}"
         />
       </div>
-      <small style={{ opacity: validate.name ? 1 : 0 }}>
+      <small style={{ opacity:  validate.name ? 1 : 0 }}>
         성명은 필수 입력입니다
       </small>
 
@@ -146,7 +152,9 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
         </button>
         <button 
           type="submit" 
-          className={styles.submitButton} >
+          className={styles.submitButton}
+          disabled={!isValidForm}
+          >
           추가
         </button>
       </div>

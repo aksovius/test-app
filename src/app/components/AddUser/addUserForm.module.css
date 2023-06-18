@@ -64,8 +64,22 @@
     margin-left: 0.5rem;
 }
 
+.submitButton:hover {
+    background-color: #45a049;
+}
+
+.submitButton:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
 .cancelButton {
     background-color: #f44336;
+}
+
+.cancelButton:hover {
+    background-color: #da190b;
 }
 
 .footer {

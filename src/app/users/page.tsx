@@ -18,7 +18,7 @@ export default function Users() {
     const [isLoading, setIsLoading] = useState(false);
     const [hasInitialLoad, setHasInitialLoad] = useState(false); // initial load
     const loader: RefObject<HTMLTableRowElement> = useRef<HTMLTableRowElement>(null);
-    console.log(users)
+ 
     useEffect(() => {
         setIsLoading(true)
         getUsers().then(users => { 
