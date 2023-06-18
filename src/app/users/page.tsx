@@ -1,6 +1,6 @@
 'use client'
 import React, { RefObject, useEffect, useRef, useState } from 'react';
-import Modal from '../components/AddUser/Modal';
+import Modal from '../components/Modal/Modal';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import styles from './page.module.css'
 import { InputForm, User } from './UsersTypes';
