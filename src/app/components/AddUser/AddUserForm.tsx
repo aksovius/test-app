@@ -78,7 +78,7 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
             name="name" 
             value={inputForm.name}  
             onChange={handleInputChange}
-            pattern="[A-z]{3,12}"
+            pattern="[A-z ]{3,20}"
         />
       </div>
       <small style={{ opacity: validate.name ? 1 : 0 }}>
@@ -144,7 +144,9 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
         >
           취소
         </button>
-        <button type="submit" className={styles.submitButton}>
+        <button 
+          type="submit" 
+          className={styles.submitButton} >
           추가
         </button>
       </div>

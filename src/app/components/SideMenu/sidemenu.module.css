@@ -23,7 +23,7 @@
   height: 100%;     /* Full height */
   width: 350px;     /* Set a width */
   background-color: rgba(0,0,0,0.9);  /* Semi-transparent black */
-  z-index: 1000;    /* High z-index to overlay other elements */
+  z-index: 990;    /* High z-index to overlay other elements */
   overflow-x: hidden; /* Prevent horizontal scroll */
   transition: 0.5s; /* Animation to slide in the sidenav */
 }

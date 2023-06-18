@@ -19,9 +19,9 @@ const Modal = ({ isOpen, onClose, onSubmit }: ModalProps) => {
 
 
   return (
-    <div className={styles.overlay}>
+    <div className={styles.overlay} id='add-user-modal'>
       <div ref={modal} className={styles.modal}>
-        <button onClick={onClose} className={styles.closeButton}>{"\u{1F5D9}"}</button>
+        <button onClick={onClose} className={styles.closeButton} id='close-modal'>{"\u{1F5D9}"}</button>
         <span className={styles.title}>사용자 추가</span>
         <AddUserForm onClose={onClose} onSubmit={onSubmit}/>
       </div>

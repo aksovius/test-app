@@ -7,12 +7,12 @@ export default function Navigation() {
     const [isSideMenuOpen, setIsSideMenuOpen] = useState(false)
   
     useEffect(() => {
-        window.innerWidth >= 768 ? setIsSideMenuOpen(true) : setIsSideMenuOpen(false)
+        window.innerWidth > 768 ? setIsSideMenuOpen(true) : setIsSideMenuOpen(false)
     }, []);
 
     useEffect(() => {
         const  handleResize = () => {
-        window.innerWidth < 768 ? setIsSideMenuOpen(false) : setIsSideMenuOpen(true)
+        window.innerWidth <= 768 ? setIsSideMenuOpen(false) : setIsSideMenuOpen(true)
         } 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);

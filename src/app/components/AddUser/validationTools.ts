@@ -16,7 +16,7 @@ export const inputPatternValidation = (event: React.ChangeEvent<HTMLInputElement
     if (!regExp.test(value)) {
         switch (name) {
             case 'name':
-                event.target.setCustomValidity('성명은 3-12자의 영문 사용 가능합니다')
+                event.target.setCustomValidity('성명은 3-20자의 영문 사용 가능합니다')
                 break;
             case 'phone':
                 event.target.setCustomValidity('전화번호은 3-15자의 숫자,-,+,(), 사용 가능합니다')
@@ -55,7 +55,7 @@ export const validateInputForm = (inputForm: InputForm, setValidate: React.Dispa
 
     switch(formKey) {
       case 'name':
-        pattern = "[A-z]{3,12}";
+        pattern = "[A-z ]{3,20}";
         break;
       case 'phone':
         pattern = "[0-9\\-\\+\\(\\)]{5,15}";

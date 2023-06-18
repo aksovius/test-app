@@ -38,6 +38,7 @@ export default function Users() {
     return <div className={styles.container}>
         <div className={styles.row}>
             <button
+                id='add-user'
                 className={styles.addUserButton}
                 onClick={() => setIsModalOpen(!isModalOpen)}>
                 사용자 추가
