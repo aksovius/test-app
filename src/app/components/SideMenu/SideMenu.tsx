@@ -3,7 +3,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from 'next/navigation';
 import styles from './sidemenu.module.css'
-import { SideMenuProps } from "@/app/types/SideMenu";
+import { SideMenuProps } from "./SideMenuTypes";
+import useOutsideClick, { ConditionFunction } from "@/app/hooks/useOutsideClick";
 
 const links = [
     {
@@ -22,24 +23,17 @@ const links = [
 
 export default function SideMenu({isOpen, setIsOpen}: SideMenuProps) {
     
-     // close on click outside
     const pathname = usePathname();
-
     const menu = useRef<HTMLDivElement>(null);
 
-  
-    const __handleClickOutside = (event: { target: any; }) => {
-        if (window.innerWidth >= 768) return;
-        if(!menu.current) return;
-        else if(event.target.id === "side-menu-button") return
-        else if(!menu.current.contains(event.target) ) setIsOpen(false);
-    };
-    useEffect(() => {
-        window.addEventListener("mousedown", __handleClickOutside);
-        return () => {
-            window.removeEventListener("mousedown", __handleClickOutside);
-        }
-    })
+   // close on click outside
+    const conditions: ConditionFunction[] = [
+        (event: MouseEvent) => window.innerWidth >= 768,
+        (event: MouseEvent) => !menu.current,
+        (event: MouseEvent) => (event.target as HTMLElement).id === "side-menu-button"
+    ];
+    useOutsideClick(menu, () => setIsOpen(false), conditions )
+    
     const getLinkStyleBasedOnPath = (path: string) => {
         return pathname === path ? `${styles.link} ${styles.selected}` : styles.link;
     }

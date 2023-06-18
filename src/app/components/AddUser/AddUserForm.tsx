@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./addUserForm.module.css";
-import { InputForm, InputValidation } from "@/app/types/UsersTypes";
-import { inputPatternValidation, validateInputForm } from "./inputValidationTools";
+import { InputForm, InputValidation } from "@/app/users/UsersTypes";
+import { inputPatternValidation, validateInputForm } from "./validationTools";
 
 /**
  * Gender list
@@ -10,21 +10,22 @@ import { inputPatternValidation, validateInputForm } from "./inputValidationTool
 const GENDER = [
   "Male",
   "Female",
-  "Agender",
-  "Polygender",
-  "Genderfluid",
-  "Bigender",
-  "Non-binary",
-  "Genderqueer",
+  // "Agender",
+  // "Polygender",
+  // "Genderfluid",
+  // "Bigender",
+  // "Non-binary",
+  // "Genderqueer",
 ];
 
   
 interface AddUserFormProps {
     onClose: () => void;
+    onSubmit: (input:InputForm) => void;
   }
 
 
-export default function AddUserForm({ onClose }: AddUserFormProps) {
+export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
   const [inputForm, setInputForm] = useState<InputForm>({
     name: "",
     gender: "Male",
@@ -57,7 +58,8 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
     // validate the form
     if(!validateInputForm(inputForm, setValidate)) return
     // send the form
-    
+    onSubmit(inputForm)
+    onClose()
     console.log(validate)
     console.log(inputForm);
   };

@@ -1,7 +1,7 @@
 'use client'
 import styles from './canvas.module.css'
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { clearCanvas, drawCircle } from './drawTools';
+import { clearCanvas, drawCircle } from './tools';
 import { Circle } from './Circle';
 
 export default function Canvas() {

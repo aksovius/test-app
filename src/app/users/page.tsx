@@ -1,7 +1,9 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 import Modal from '../components/AddUser/Modal';
+import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import styles from './page.module.css'
+import { InputForm, User } from './UsersTypes';
 
 export async function getUsers() {
     const res = await fetch('https://random-data-api.com/api/v2/users?size=20')
@@ -10,12 +12,29 @@ export async function getUsers() {
 
 export default function Users() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState<User[]>([]);
+    const loader: RefObject<HTMLTableRowElement> = useRef<HTMLTableRowElement>(null);
     console.log(users)
     useEffect(() => {
         getUsers().then(users => { setUsers(users) })
     }, [])
 
+    // load more data 
+    useInfiniteScroll(loader, ()=> {
+        getUsers().then(users => { 
+            setUsers((prev: User[]) => [...prev, ...users]) })})
+
+    const handleSubmit = (input: InputForm) => {
+        const user = {
+            first_name: input.name,
+            gender: input.gender,
+            phone_number: input.phone,
+            address: {
+                zip_code: input.postalcode
+            }
+        }
+        setUsers([user, ...users])
+    }
     return <div className={styles.container}>
         <div className={styles.row}>
             <button
@@ -23,7 +42,7 @@ export default function Users() {
                 onClick={() => setIsModalOpen(!isModalOpen)}>
                 사용자 추가
             </button>
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}/>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleSubmit}/>
              
         </div>
         <table className={styles.table}>
@@ -44,6 +63,7 @@ export default function Users() {
                         <td>{user?.address?.zip_code}</td>
                     </tr>
                 })}
+                 <tr ref={loader} id='loader'>Loading...</tr>
             </tbody>
         </table>
 

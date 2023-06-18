@@ -1,4 +1,4 @@
-import { InputForm, InputValidation } from "@/app/types/UsersTypes";
+import { InputForm, InputValidation } from "@/app/users/UsersTypes";
 import React from "react";
 
 /**
