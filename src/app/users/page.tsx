@@ -10,19 +10,33 @@ export async function getUsers() {
     return res.json()
 }
 
+
 export default function Users() {
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [users, setUsers] = useState<User[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [hasInitialLoad, setHasInitialLoad] = useState(false); // initial load
     const loader: RefObject<HTMLTableRowElement> = useRef<HTMLTableRowElement>(null);
     console.log(users)
     useEffect(() => {
-        getUsers().then(users => { setUsers(users) })
+        setIsLoading(true)
+        getUsers().then(users => { 
+            setUsers(users) 
+            setIsLoading(false)
+            setHasInitialLoad(true)
+        })
     }, [])
 
     // load more data 
     useInfiniteScroll(loader, ()=> {
+        if (isLoading || !hasInitialLoad) return;
+        setIsLoading(true)
         getUsers().then(users => { 
-            setUsers((prev: User[]) => [...prev, ...users]) })})
+            setUsers((prev: User[]) => [...prev, ...users])
+            setIsLoading(false)
+         })
+    })
 
     const handleSubmit = (input: InputForm) => {
         const user = {
@@ -35,6 +49,7 @@ export default function Users() {
         }
         setUsers([user, ...users])
     }
+    if (!hasInitialLoad) return <div>Loading...</div> // Prevents the table from rendering before the initial load SSR 
     return <div className={styles.container}>
         <div className={styles.row}>
             <button
@@ -64,7 +79,7 @@ export default function Users() {
                         <td>{user?.address?.zip_code}</td>
                     </tr>
                 })}
-                 <tr ref={loader} id='loader'>Loading...</tr>
+                 <tr ref={loader} id='loader'><td colSpan={4}>Loading...</td></tr>
             </tbody>
         </table>
 

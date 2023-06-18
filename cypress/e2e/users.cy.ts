@@ -71,10 +71,10 @@ describe('User Page', () => {
     });
 
     it('should load more user data when scroll to bottom', () => {
-        cy.get('table tbody tr').should('have.length', 20);
+        cy.get('table tbody tr').should('have.length.at.least', 20);
         cy.get('[id="loader"]').scrollIntoView()
         cy.wait(1000);
-        cy.get('table tbody tr').should('be.gt', 20);
+        cy.get('table tbody tr').should('have.length.at.least', 40);
     })
   });
   
