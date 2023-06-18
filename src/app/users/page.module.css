@@ -1,36 +1,45 @@
+.addUserButton {
+    margin: 10px 0;
+}
+
+.row {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    background-color: #fff;
+    z-index: 100;
+}
+
 .container {
-    overflow-y: auto;
-    overflow-x: hidden;
     height: auto;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin: 1rem 0;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .container::-webkit-scrollbar {
     display: none;
-   
 }
 
-.addUserButton {
-    margin: 10px 0 5px 0;
-}
-.row {
-    display: flex;
-    justify-content: flex-end;
-}
 .table {
-    min-width: 600px;
-    border-collapse: collapse;
-    border-spacing: 0;
-    border: 1px solid #ddd;
     position: relative;
     overflow: auto;
+    min-width: 600px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid #ddd;
 }
 
 .table thead {
     position: sticky;
+    top: 42px;
+    background-color: #fff;
+    z-index: 2;
 }
-.table th, .table td {
+
+.table th,
+.table td {
     padding: 0.5em;
     border: 1px solid #ddd;
 }
@@ -39,13 +48,15 @@
     font-size: 1.5em;
     font-weight: bold;
     color: #000;
-    border-left-color: #ddd;
-    position: sticky;
     background: #fff;
 }
 
 .table th:first-child {
     border-left: none;
+}
+
+.table tbody tr:hover {
+    background-color: #ddd;
 }
 
 .table td {
