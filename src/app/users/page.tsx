@@ -5,7 +5,7 @@ import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import styles from './page.module.css'
 import { InputForm, User } from './UsersTypes';
 
-export async function getUsers() {
+async function getUsers() {
     const res = await fetch('https://random-data-api.com/api/v2/users?size=20')
     return res.json()
 }
