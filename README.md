@@ -2,8 +2,9 @@
 
 ## 사전 요구사항
 이 프로젝트를 실행하기 전에 다음이 설치되어 있는지 확인하십시오:
-1. Node.js 
+1. Node.js v13
 2. Yarn 
+3. Cypress
 
 ## 설치 및 빌드
 1. 라이브러리 설치: `yarn install`
@@ -24,8 +25,9 @@ Docker가 설치되어 있는 경우, 프로젝트는 Docker 파일을 사용하
 
 ## Prerequisites
 Before running this project, ensure the following are installed:
-1. Node.js 
+1. Node.js v13
 2. Yarn 
+3. Cypress
 
 ## Install and Build
 1. Install Libraries: `yarn install`
