@@ -5,8 +5,6 @@ import useOutsideClick, { ConditionFunction } from "@/app/hooks/useOutsideClick"
 import { ModalProps } from './ModalTypes';
 
 const Modal = ({ isOpen, onClose, onSubmit }: ModalProps) => {
- 
-
   const modal = useRef<HTMLDivElement>(null);
   const conditions: ConditionFunction[] = [
     (event: MouseEvent) => !modal.current,
