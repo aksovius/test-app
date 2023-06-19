@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "test:cypress": "cypress run"
   },
   "dependencies": {
     "@types/node": "20.2.5",

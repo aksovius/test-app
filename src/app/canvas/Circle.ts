@@ -27,11 +27,28 @@ export class Circle {
         this.context = this.canvas.current ? this.canvas.current.getContext('2d') : null; // Set context
         this.center = center // Set center
         this.radius = radius // Set radius
-        this.devicePixelRatio = window.devicePixelRatio || 1; // Set device pixel ratio
         this.color = color; // Set color
+        this.devicePixelRatio = 1
+        this.setCanvasDimensions();
 
-        // If context exists and canvas current is defined, set canvas width and height 
-        // based on devicePixelRatio and scale the context accordingly
+        // Add resize listener
+        window.addEventListener('resize', this.handleResize);
+    }
+
+    /**
+     * Resize event handler.
+     */
+    handleResize = () => {
+        this.setCanvasDimensions();
+    }
+
+    /**
+     * Set the canvas dimensions based on devicePixelRatio and scale the context accordingly.
+     */
+    setCanvasDimensions = () => {
+        // Update the devicePixelRatio
+        this.devicePixelRatio = window.devicePixelRatio || 1;
+
         if (this.context && this.canvas.current) {
             const canvas = this.canvas.current;
             const rect = canvas.getBoundingClientRect();
@@ -39,5 +56,13 @@ export class Circle {
             canvas.height = rect.height * this.devicePixelRatio;
             this.context.scale(this.devicePixelRatio, this.devicePixelRatio);
         }
+    }
+
+    /**
+     * Remove resize listener. This should be called before the Circle object is destroyed.
+     */
+    cleanup() {
+        // Remove resize listener
+        window.removeEventListener('resize', this.handleResize);
     }
 }

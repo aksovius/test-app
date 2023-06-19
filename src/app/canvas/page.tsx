@@ -18,12 +18,16 @@ export default function Canvas() {
         }
     }, [circles])
 
+    const handleResize = useCallback(() => {
+        drawAllCircles();
+    }, [drawAllCircles]);
+
     // Initial render
     useEffect(() => {
         if (canvasRef.current) {
             const colors = ['red', 'green', 'blue'];
             const newCircles = colors.map((color, index) => {
-                const circle = new Circle(canvasRef, { x: 100 + index * 60, y: 100 }, 50, color);
+                const circle = new Circle(canvasRef, { x: 100 + index * 100, y: 100 }, 50, color);
                 return circle;
             });
             drawAllCircles(newCircles);
@@ -32,6 +36,14 @@ export default function Canvas() {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    
+    // Resize event listener
+    useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    }
+}, [handleResize]);
 
     // Event listeners
     useEffect(() => {
