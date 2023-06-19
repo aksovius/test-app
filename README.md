@@ -18,8 +18,9 @@ Docker가 설치되어 있는 경우, 프로젝트는 Docker 파일을 사용하
 2. Docker 컨테이너 시작: `docker run -p 3000:3000 app`
 
 ## 테스트
-1. Cypress를 열고 테스트를 선택하려면: `yarn run cypress`
-2. 모든 테스트를 실행하려면: `yarn run test` ("test": "concurrently \"yarn start\" \"cypress run\"" 서버와 Cypress를 동시에 실행합니다. 하지만 이전에 빌드해야 합니다.)
+1. 빌드: `yarn build`
+2. 서버 실행 `yarn start` 중에 Cypress를 열고 테스트를 선택하려면: `yarn run cypress`
+3. 모든 테스트를 실행하려면: `yarn run test` ("test": "concurrently \"yarn start\" \"cypress run\"" 서버와 Cypress를 동시에 실행합니다.)
 
 # Project Running Method (English)
 
@@ -41,6 +42,7 @@ If Docker is installed, the project can be run using the Docker file:
 2. Start Docker Container: `docker run -p 3000:3000 app`
 
 ## Testing
-1. To open Cypress and select a test: `yarn run cypress`
-2. To run all tests: `yarn run test` (the "test" script runs the server and Cypress concurrently, but you should build it before running.)
+1. Build: `yarn build`
+1. Run server `yarn start` and in new terminal run  `yarn run cypress` open Cypress and select a test:
+2. To run all tests: `yarn run test` (the "test" script runs the server and Cypress concurrently)
 
