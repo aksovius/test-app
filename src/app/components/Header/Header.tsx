@@ -1,8 +1,5 @@
-'use client';
-import { SideMenuProps } from '@/app/types/SideMenu';
+import { SideMenuProps } from '../SideMenu/SideMenuTypes';
 import styles from './header.module.css';
-import { useEffect } from 'react';
-
 
 export default function Header({isOpen, setIsOpen}: SideMenuProps) {
 

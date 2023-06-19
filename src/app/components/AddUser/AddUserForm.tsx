@@ -24,14 +24,16 @@ interface AddUserFormProps {
     onSubmit: (input:InputForm) => void;
   }
 
-
+const initialInput = {
+  name: "",
+  gender: "Male",
+  phone: "",
+  postalcode: "",
+}
 export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
-  const [inputForm, setInputForm] = useState<InputForm>({
-    name: "",
-    gender: "Male",
-    phone: "",
-    postalcode: "",
-  });
+
+  // Define state variables for form inputs and validation
+  const [inputForm, setInputForm] = useState<InputForm>(initialInput);
   const [validate, setValidate] = useState<InputValidation>({
     name: false,
     gender: false,
@@ -39,35 +41,48 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
     postalcode: false,
   });
 
+  // Define state for form validation
   const [isValidForm, setIsValidForm] = useState(false);
- 
+  
+  // When the form changes, validate the form 
   useEffect(() => {
   setIsValidForm(validateInputForm(inputForm, setValidate));
   }, [inputForm]);
 
+  // Handle changes in gender selection
   const handleGenderChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setInputForm({ ...inputForm, gender: event.target.value });
   };
 
+  // Handle input changes in form fields
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     inputPatternValidation(event)
     setInputForm({ ...inputForm, [event.target.name]: event.target.value });
   };
+
+  // Cancel handler for form submission
   const handelCancel = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onClose();
   };
 
+  // Handle form submission
   const handelSubmit = (event: any) => {
     event.preventDefault();
+
+    // If form is not valid, return
     if(!isValidForm) return
-    
-    // send the form
+
+    // Send the form data to parent
     onSubmit(inputForm)
+
+    // Reset form validation and form data
+    setIsValidForm(false)
+    setInputForm(initialInput)
+    
+    // Close form modal
     onClose()
-    console.log(validate)
-    console.log(inputForm);
   };
   return (
     <form

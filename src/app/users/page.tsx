@@ -10,7 +10,6 @@ export async function getUsers() {
     return res.json()
 }
 
-
 export default function Users() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,8 +70,8 @@ export default function Users() {
                 </tr>
             </thead>
             <tbody>
-                {users.map((user: any) => {
-                    return <tr key={user?.id}>
+                {users.map((user: any, index: number) => {
+                    return <tr key={index}>
                         <td>{user?.first_name}</td>
                         <td>{user?.gender}</td>
                         <td>{user?.phone_number}</td>

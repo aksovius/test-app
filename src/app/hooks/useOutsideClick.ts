@@ -19,24 +19,24 @@ const useOutsideClick = (
   callback: () => void,
   conditions: ConditionFunction[] = []
 ): void => {
-  const handleClickOutside = (event: MouseEvent) => {
-    // Apply the conditions
-    for (const condition of conditions) {
-      if (condition(event)) return;
-    }
-
-    // Check if the click is outside
-    if (ref.current && !ref.current.contains(event.target as Node)) {
-      callback();
-    }
-  };
 
   useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Apply the conditions
+      for (const condition of conditions) {
+        if (condition(event)) return;
+      }
+      // Check if the click is outside
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        callback();
+      }
+    };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [ref, callback, conditions]);
+  }, [ref, callback, conditions, ]);
 };
 
 export default useOutsideClick;

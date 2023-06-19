@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { usePathname } from 'next/navigation';
 import styles from './sidemenu.module.css'
 import { SideMenuProps } from "./SideMenuTypes";

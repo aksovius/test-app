@@ -22,7 +22,7 @@ type FetchMoreCallback = () => void;
  *   const loaderRef = useRef(null);
  *   
  *   const fetchMoreItems = useCallback(() => {
- *     // Fetch more items and update state
+ *     
  *   }, []);
  *   
  *   useInfiniteScroll(loaderRef, fetchMoreItems);
