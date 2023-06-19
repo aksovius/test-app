@@ -59,7 +59,7 @@ const useInfiniteScroll = (ref: RefObject<HTMLDivElement>, fetchMore: FetchMoreC
         }
 
         return (): void => {
-            if(loaderElement) observer.unobserve(loaderElement);
+            if (loaderElement) observer.unobserve(loaderElement);
         }
     }, [fetchMore, ref]);
 }

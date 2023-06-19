@@ -7,13 +7,13 @@ import { Circle } from './Circle';
 export default function Canvas() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [circles, setCircles] = useState<Circle[]>([]);
-    
-    const drawAllCircles = useCallback((data=circles) => {
+
+    const drawAllCircles = useCallback((data = circles) => {
         const context = canvasRef.current?.getContext('2d');
         if (context) {
             clearCanvas(context)
             data.forEach(circle => {
-                drawCircle(circle,context);
+                drawCircle(circle, context);
             });
         }
     }, [circles])
@@ -30,12 +30,12 @@ export default function Canvas() {
             setCircles(newCircles);
         }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Event listeners
     useEffect(() => {
-        let selected: Circle| null = null;
+        let selected: Circle | null = null;
         const handleMouseDown = (event: MouseEvent) => {
             console.log(`Mouse down at ${event.clientX}, ${event.clientY}`);
             let smallestDistance = Infinity;

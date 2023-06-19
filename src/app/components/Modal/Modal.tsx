@@ -8,9 +8,9 @@ const Modal = ({ isOpen, onClose, onSubmit }: ModalProps) => {
   const modal = useRef<HTMLDivElement>(null);
   const conditions: ConditionFunction[] = [
     (event: MouseEvent) => !modal.current,
-];
+  ];
   useOutsideClick(modal, onClose, conditions)
-   
+
   if (!isOpen) {
     return null;
   }
@@ -19,7 +19,7 @@ const Modal = ({ isOpen, onClose, onSubmit }: ModalProps) => {
       <div ref={modal} className={styles.modal}>
         <button onClick={onClose} className={styles.closeButton} id='close-modal'>{"\u{1F5D9}"}</button>
         <span className={styles.title}>사용자 추가</span>
-        <AddUserForm onClose={onClose} onSubmit={onSubmit}/>
+        <AddUserForm onClose={onClose} onSubmit={onSubmit} />
       </div>
     </div>
   );

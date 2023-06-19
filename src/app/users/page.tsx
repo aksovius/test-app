@@ -17,24 +17,24 @@ export default function Users() {
     const [isLoading, setIsLoading] = useState(false);
     const [hasInitialLoad, setHasInitialLoad] = useState(false); // initial load
     const loader: RefObject<HTMLTableRowElement> = useRef<HTMLTableRowElement>(null);
- 
+
     useEffect(() => {
         setIsLoading(true)
-        getUsers().then(users => { 
-            setUsers(users) 
+        getUsers().then(users => {
+            setUsers(users)
             setIsLoading(false)
             setHasInitialLoad(true)
         })
     }, [])
 
     // load more data 
-    useInfiniteScroll(loader, ()=> {
+    useInfiniteScroll(loader, () => {
         if (isLoading || !hasInitialLoad) return;
         setIsLoading(true)
-        getUsers().then(users => { 
+        getUsers().then(users => {
             setUsers((prev: User[]) => [...prev, ...users])
             setIsLoading(false)
-         })
+        })
     })
 
     const handleSubmit = (input: InputForm) => {
@@ -57,8 +57,8 @@ export default function Users() {
                 onClick={() => setIsModalOpen(!isModalOpen)}>
                 사용자 추가
             </button>
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleSubmit}/>
-             
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSubmit={handleSubmit} />
+
         </div>
         <table className={styles.table}>
             <thead>
@@ -78,7 +78,7 @@ export default function Users() {
                         <td>{user?.address?.zip_code}</td>
                     </tr>
                 })}
-                 <tr ref={loader} id='loader'><td colSpan={4}>Loading...</td></tr>
+                <tr ref={loader} id='loader'><td colSpan={4}>Loading...</td></tr>
             </tbody>
         </table>
 

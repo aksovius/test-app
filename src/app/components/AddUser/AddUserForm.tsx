@@ -18,11 +18,11 @@ const GENDER = [
   // "Genderqueer",
 ];
 
-  
+
 interface AddUserFormProps {
-    onClose: () => void;
-    onSubmit: (input:InputForm) => void;
-  }
+  onClose: () => void;
+  onSubmit: (input: InputForm) => void;
+}
 
 const initialInput = {
   name: "",
@@ -43,10 +43,10 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
 
   // Define state for form validation
   const [isValidForm, setIsValidForm] = useState(false);
-  
+
   // When the form changes, validate the form 
   useEffect(() => {
-  setIsValidForm(validateInputForm(inputForm, setValidate));
+    setIsValidForm(validateInputForm(inputForm, setValidate));
   }, [inputForm]);
 
   // Handle changes in gender selection
@@ -72,7 +72,7 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
     event.preventDefault();
 
     // If form is not valid, return
-    if(!isValidForm) return
+    if (!isValidForm) return
 
     // Send the form data to parent
     onSubmit(inputForm)
@@ -80,7 +80,7 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
     // Reset form validation and form data
     setIsValidForm(false)
     setInputForm(initialInput)
-    
+
     // Close form modal
     onClose()
   };
@@ -94,15 +94,15 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
         <label htmlFor="name" className={styles.required} data-text=" *">
           성명
         </label>
-        <input 
-            id="name" 
-            name="name" 
-            value={inputForm.name}  
-            onChange={handleInputChange}
-            pattern="[A-z ]{3,20}"
+        <input
+          id="name"
+          name="name"
+          value={inputForm.name}
+          onChange={handleInputChange}
+          pattern="[A-z ]{3,20}"
         />
       </div>
-      <small style={{ opacity:  validate.name ? 1 : 0 }}>
+      <small style={{ opacity: validate.name ? 1 : 0 }}>
         성명은 필수 입력입니다
       </small>
 
@@ -165,11 +165,11 @@ export default function AddUserForm({ onClose, onSubmit }: AddUserFormProps) {
         >
           취소
         </button>
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className={styles.submitButton}
           disabled={!isValidForm}
-          >
+        >
           추가
         </button>
       </div>
