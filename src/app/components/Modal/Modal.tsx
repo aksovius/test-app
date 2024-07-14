@@ -1,8 +1,8 @@
-import styles from './modal.module.css'
-import AddUserForm from "../AddUser/AddUserForm";
 import { useRef } from "react";
 import useOutsideClick, { ConditionFunction } from "@/app/hooks/useOutsideClick";
+import AddUserForm from "../AddUser/AddUserForm";
 import { ModalProps } from './ModalTypes';
+import styles from './modal.module.css'
 
 const Modal = ({ isOpen, onClose, onSubmit }: ModalProps) => {
   const modal = useRef<HTMLDivElement>(null);

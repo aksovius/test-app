@@ -31,5 +31,5 @@
     ".next/types/**/*.ts",
     "jest.setup.ts"
   ],
-  "exclude": ["*/**/*.test.tsx"]
+  "exclude": ["*/**/*.tests.tsx"]
 }
